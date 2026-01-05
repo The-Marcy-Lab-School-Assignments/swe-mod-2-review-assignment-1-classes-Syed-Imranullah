@@ -1,5 +1,3 @@
-// Problem 2: Composition - Team and Player
-// Implement your Player and Team classes below
 
 class Player {
   constructor(name, position, jerseyNumber) {
@@ -16,38 +14,43 @@ class Team {
   constructor(name) {
     this.name = name;
   }
-  get getStarters() {
+
+  getStarters() {
     return this.#starters;
   }
 
-  get getBench() {
+  getBench() {
     return this.#bench;
   }
+
   addBenchPlayer(player) {
     this.#bench.push(player);
   }
+
   getPlayerCount() {
     return this.#starters.length + this.#bench.length;
   }
+
   moveToBench(name) {
     for (let i = 0; i < this.#starters.length; i++) {
       if (this.#starters[i].name === name) {
-        const player = this.#starters.splice(name);
-        this.#bench.push(Player);
+        const player = this.#starters.splice(i, 1)[0];
+        this.#bench.push(player);
         return true;
       }
     }
     return false;
   }
-  moveToStarters(name){
-    for (let i = 0; i < this.#bench.length; i ++){
-      if(this.#bench[i].name === name){
-        const benchPlayer = this.#bench.splice(name)
-          this.#bench.push(Player)
-          return true
+
+  moveToStarters(name) {
+    for (let i = 0; i < this.#bench.length; i++) {
+      if (this.#bench[i].name === name) {
+        const player = this.#bench.splice(i, 1)[0];
+        this.#starters.push(player);
+        return true;
       }
     }
-    return false
+    return false;
   }
 }
 
